@@ -1,12 +1,20 @@
-const express = require('express')
-const controlador = require('C:\\Users\\juanp\\OneDrive\\Escritorio\\CursoAcademia4.0\\Trabajo en clase\\clase 50\\ApiRestFul-MVC\\router\\productos.js');
+const express = require('express');
+const Controlador = require('../controlador/productos');
 
+class Router {
+    constructor() {
+        this.router = express.Router();
+        this.controlador = new Controlador()
+    }
 
-const router = express.Router()
+    start() {
+        this.router.get('/:id?', this.controlador.obtenerProductos);
+        this.router.post('/', this.controlador.guardarProducto);
+        this.router.put('/:id', this.controlador.actualizarProducto);
+        this.router.delete('/:id', this.controlador.borrarProducto);
 
-router.get('/:id?', controlador.obtenerProductos)
-router.post('/', controlador.guardarProducto)
-router.put('/:id', controlador.actualizarProducto)
-router.delete('/:id', controlador.borrarProducto)
+        return this.router;
+    }
+}
 
-module.exports = router
+module.exports = Router;  // Cambio en la forma de exportar
