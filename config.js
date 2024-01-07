@@ -1,8 +1,13 @@
-const MODO_PERSISTENCIA = 'MONGODB' // FILE - MONGODB 
+const dotenv = require('dotenv');
+
+
+dotenv.config()
+
+const MODO_PERSISTENCIA = process.env.MODO_PERSISTENCIA || 'MEM' 
 const PORT = process.env.PORT || 8080
 //const STRGCNX = 'mongodb://localhost:27017'
-const STRGCNX = 'mongodb+srv://Rami2010:Rami2010@cluster0.o4qsrgt.mongodb.net/?retryWrites=true&w=majority'
-const BASE = 'ecommerce'
+const STRGCNX = process.env.STRGCNX || 'mongodb://127.0.0.1'
+const BASE = process.env.BASE || 'test'
 
 
 module.exports = {MODO_PERSISTENCIA, PORT, STRGCNX, BASE}
